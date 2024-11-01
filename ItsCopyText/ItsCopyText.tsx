@@ -18,7 +18,7 @@ const CopyButton = ({ text }: { text: string }) => {
   return (
     <button
       onClick={handleCopy}
-      className="w-fit copy-button boder boder-slate-400 bg-slate-400 bg-opacity-20 p-1 px-2 rounded-lg text-sm"
+      className="w-fit copy-button boder boder-slate-400 bg-slate-400 bg-opacity-10 p-1 px-2 rounded-lg text-sm"
     >
       {copied ? 'Copied! 😎' : 'Copy 📋'}
     </button>

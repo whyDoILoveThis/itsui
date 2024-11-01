@@ -17,9 +17,10 @@ export default function ItsCode({
     if (copying) {
       setTimeout(() => {
         setCopying(false);
-      }, [400]);
+      }, 400);
     }
   }, [copying]);
+  
 
   return (
     <article>
