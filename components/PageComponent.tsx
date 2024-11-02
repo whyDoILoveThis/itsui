@@ -1,15 +1,14 @@
-'use client';
-import ItsCode from '@/components/ItsCode';
-import ItsTooltip from '@/ItsTooltip/ItsTooltip';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+"use client";
+import ItsCode from "@/components/ItsCode";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface Props {
   title: string;
   tagline: string;
   description: string;
   exampleElement: React.ReactNode;
-  CodeSnipUsage: string;
-  CodeSnipComponent: string;
+  CodeSnipUsage?: string;
+  CodeSnipComponent?: string;
   CodeSnipCSS?: string;
 }
 
@@ -43,16 +42,22 @@ export default function PageComponent({
         className="w-full flex flex-col items-center max-w-[800px]"
       >
         <TabsList>
-          <TabsTrigger value="usage">Useage</TabsTrigger>
-          <TabsTrigger value="component">Component</TabsTrigger>
+          {CodeSnipUsage && <TabsTrigger value="usage">Useage</TabsTrigger>}
+          {CodeSnipComponent && (
+            <TabsTrigger value="component">Component</TabsTrigger>
+          )}
           {CodeSnipCSS && <TabsTrigger value="css">CSS</TabsTrigger>}
         </TabsList>
-        <TabsContent value="usage">
-          <ItsCode lang="jsx" code={CodeSnipUsage} />
-        </TabsContent>
-        <TabsContent value="component">
-          <ItsCode lang="tsx" code={CodeSnipComponent} />
-        </TabsContent>
+        {CodeSnipUsage && (
+          <TabsContent value="usage">
+            <ItsCode lang="jsx" code={CodeSnipUsage} />
+          </TabsContent>
+        )}
+        {CodeSnipComponent && (
+          <TabsContent value="component">
+            <ItsCode lang="tsx" code={CodeSnipComponent} />
+          </TabsContent>
+        )}
         {CodeSnipCSS && (
           <TabsContent value="css">
             <ItsCode lang="css" code={CodeSnipCSS} />
