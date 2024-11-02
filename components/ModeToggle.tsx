@@ -10,7 +10,7 @@ export function ModeToggle() {
 
   return (
    
-        <button className='relative border rounded-full p-3' onClick={() => {theme === "dark" ? setTheme("light") : setTheme("dark")}}  >
+        <button className='relative btn btn-round' onClick={() => {theme === "dark" ? setTheme("light") : setTheme("dark")}}  >
           <Sun className=" top-0 h-[1.2rem] w-[1.2rem] rotate-0 dark:hidden transition-all dark:-rotate-90" />
           <Moon className=" w-0 h-0 dark:h-[1.2rem]  dark:w-[1.2rem] rotate-90 transition-all dark:rotate-0" />
           <span className="sr-only">Toggle theme</span>

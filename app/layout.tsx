@@ -30,8 +30,8 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <nav className="fixed border-b border-slate-400 flex justify-between top-0 left-0 w-full bg-white bg-opacity-10 backdrop-blur-md z-[50] p-4">
-              <Link href="/" className="text-xl font-bold">ItsUi</Link> <ModeToggle />
+            <nav className="fixed border-b border-slate-400 flex justify-between top-0 left-0 w-full bg-white bg-opacity-10 backdrop-blur-md z-[50] p-2.5">
+              <Link href="/" className="text-2xl font-bold">ItsUi</Link> <ModeToggle />
             </nav>
             <p className="fixed top-0 left-0">📘🥶💜💜</p>
             <p className="fixed top-5 left-0">🦞🤬💜</p>

@@ -18,6 +18,11 @@ export const CodeSnipButtonCSS = `
     rounded-full
   }
   
+  .btn-round {
+    @apply
+    px-2
+  }
+
   .btn-blue {
     @apply
     text-blue-600
