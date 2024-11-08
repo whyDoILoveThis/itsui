@@ -1,8 +1,11 @@
 'use client';
-
+import React from 'react';
 import Link from 'next/link';
+import { useState } from 'react';
+import ItsSearchbar from '../ItsSearchbar/ItsSearchbar';
 
 export default function Home() {
+  const [searchTerm, setSearchterm] = useState("");
   const links = [
     {
       label: "Tooltip",
@@ -11,6 +14,10 @@ export default function Home() {
     {
       label: "Button",
       href: "/its-btn"
+    },
+    {
+      label: "Search Bar",
+      href: "/its-searchbar"
     }
   ]
   return (
@@ -23,7 +30,7 @@ export default function Home() {
 
      <Link key={index} className="btn" href={link.href}>{link.label}</Link>
       ))}
-
+    <ItsSearchbar  searchbarWidth='150px' searchTerm={searchTerm} setSearchTerm={setSearchterm}/>
     </article>
   );
 }
