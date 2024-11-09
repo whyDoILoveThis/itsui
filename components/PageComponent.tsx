@@ -38,7 +38,15 @@ export default function PageComponent({
       </div>
 
       <Tabs
-        defaultValue="usage"
+        defaultValue={
+          CodeSnipUsage
+            ? "usage"
+            : !CodeSnipUsage && CodeSnipComponent
+            ? "component"
+            : !CodeSnipUsage && !CodeSnipComponent
+            ? "css"
+            : "usage"
+        }
         className="w-full flex flex-col items-center max-w-[800px]"
       >
         <TabsList>

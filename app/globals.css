@@ -91,9 +91,33 @@
   }
 }
 
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.do-the-stupid-blue-flash {
+  -webkit-tap-highlight-color: rgba(78, 113, 255, 0.518);
+}
+
+.zz-top {
+  z-index: 9999;
+}
+
+.z-zero {
+  z-index: 0;
+}
+
+.z-lowest {
+  z-index: -9999;
+}
+
+.text-shadow {
+  text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
+}
 
 .btn {
   @apply
+  selection:bg-transparent
   text-slate-600
   dark:text-slate-200
   border-slate-500

@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import ItsSearchbar from "../../ItsSearchbar/ItsSearchbar";
 import PageComponent from "../../components/PageComponent";
+import { CodeSnipSearchbar } from "./CodeSnipSearchbar";
+import { CodeSnipSearchbarUsasge } from "./CodeSnipSearchBarUsage";
 
 export default function Page() {
   const [searchTerm, setSearchterm] = useState("");
@@ -20,12 +22,14 @@ export default function Page() {
           />
           <ItsSearchbar
             searchbarAsAnimatedButton={true}
-            searchbarWidth="290px"
+            searchbarWidth="240px"
             searchTerm={searchTerm}
             setSearchTerm={setSearchterm}
           />
         </div>
       }
+      CodeSnipUsage={CodeSnipSearchbarUsasge}
+      CodeSnipComponent={CodeSnipSearchbar}
     />
   );
 }
