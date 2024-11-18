@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { useState } from "react";
 import ItsSearchbar from "../ItsSearchbar/ItsSearchbar";
+import ItsFileInput from "@/ItsFileInput/ItsFileInput";
 
 export default function Home() {
   const [searchTerm, setSearchterm] = useState("");
@@ -26,6 +27,10 @@ export default function Home() {
     {
       label: "Confirm Pop",
       href: "/its-confirm-pop",
+    },
+    {
+      label: "File Input",
+      href: "/its-file-input",
     },
   ];
   return (

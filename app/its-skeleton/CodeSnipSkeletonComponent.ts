@@ -1,7 +1,6 @@
 export const CodeSnipSkeletonComponent = `
 "use client";
 import React, { useEffect, useState } from "react";
-import { classicNameResolver } from "typescript";
 
 interface Props {
   width?: string;

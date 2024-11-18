@@ -17,6 +17,12 @@ const Footer = () => {
         Sort array alphabetically
       </Link>
       <Link
+        className="border h-fit border-slate-500 border-opacity-30 px-1 rounded-md bg-black bg-opacity-10 dark:bg-opacity-20 text-slate-500 hover:text-slate-600 hover:bg-opacity-5 dark:text-slate-300 dark:hover:bg-opacity-5"
+        href={"/chunkArray()"}
+      >
+        {"chunkArray();"}
+      </Link>
+      <Link
         target="_blank"
         className="mt-3 text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
         href={"https://ian-smith.vercel.app"}

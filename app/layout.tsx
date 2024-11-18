@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} relative pt-10 py-36 flex flex-col items-center w-full h-full min-h-screen`}
+        className={`${inter.className} relative pt-10 pb-56 flex flex-col items-center w-full h-full min-h-screen`}
       >
         <main className="max-w-[800px] w-full h-full">
           <ItsConfirmProvider>

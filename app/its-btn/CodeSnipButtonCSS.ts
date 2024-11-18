@@ -17,10 +17,29 @@ export const CodeSnipButtonCSS = `
     border
     rounded-full
   }
-  
+
   .btn-round {
+    --btn-size: 35px;
     @apply
-    px-2
+    w-[var(--btn-size)]
+    h-[var(--btn-size)] 
+    max-w-[var(--btn-size)]
+    max-h-[var(--btn-size)] 
+    p-0
+    flex
+    justify-center
+    items-center
+  }
+
+  .btn-ghost {
+    @apply
+    w-full
+    border-none
+    rounded-md
+    bg-transparent
+    dark:bg-transparent
+    dark:hover:bg-white
+    dark:hover:bg-opacity-10
   }
 
   .btn-blue {
