@@ -14,7 +14,7 @@ const Page = () => {
       exampleElement={
         <div className="flex flex-col gap-2">
           <p>
-            const <b>arrayToSort</b> = ["Never", "Gonna", "Give", "You", "Up"]
+            const <b>arrayToSort</b> = [&quot;Never&quot;, &quot;Gonna&quot;, &quot;Give&quot;, &quot;You&quot;, &quot;Up&quot;]
           </p>
           <div className="flex gap-2">
             <span className="flex flex-col border p-1 rounded-sm">
