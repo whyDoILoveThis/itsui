@@ -1,6 +1,7 @@
 export const CodeSnipItsToolTipCSS = `.tooltip {
   position: relative;
   cursor: pointer;
+  width: fit-content;
 }
 
 .tooltiptext {
