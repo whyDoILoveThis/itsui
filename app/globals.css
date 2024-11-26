@@ -233,6 +233,17 @@ a {
   dark:bg-opacity-20;
 }
 
+.input {
+  @apply bg-transparent
+  border
+  border-slate-400
+  border-opacity-50
+  p-2 
+  px-4
+  rounded-full
+  focus:outline-none;
+}
+
 .dashed-border-2 {
   border: 2px dashed rgb(118, 130, 152);
 }

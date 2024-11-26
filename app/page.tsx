@@ -32,6 +32,10 @@ export default function Home() {
       label: "File Input",
       href: "/its-file-input",
     },
+    {
+      label: "Copy Text Button",
+      href: "/its-copy-btn",
+    },
   ];
   return (
     <article className={`h-full p-4 pt-12 flex flex-col gap-2`}>
