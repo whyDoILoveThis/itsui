@@ -2,41 +2,10 @@
 import React from "react";
 import Link from "next/link";
 import { useState } from "react";
-import ItsSearchbar from "../ItsSearchbar/ItsSearchbar";
 import ItsFileInput from "@/ItsFileInput/ItsFileInput";
+import { componentLinks } from "@/lib/links-components";
 
 export default function Home() {
-  const [searchTerm, setSearchterm] = useState("");
-  const links = [
-    {
-      label: "Tooltip",
-      href: "/its-tooltip",
-    },
-    {
-      label: "Button",
-      href: "/its-btn",
-    },
-    {
-      label: "Search Bar",
-      href: "/its-searchbar",
-    },
-    {
-      label: "Skeleton",
-      href: "/its-skeleton",
-    },
-    {
-      label: "Confirm Pop",
-      href: "/its-confirm-pop",
-    },
-    {
-      label: "File Input",
-      href: "/its-file-input",
-    },
-    {
-      label: "Copy Text Button",
-      href: "/its-copy-btn",
-    },
-  ];
   return (
     <article className={`h-full p-4 pt-12 flex flex-col gap-2`}>
       <div>
@@ -46,7 +15,7 @@ export default function Home() {
         </p>
       </div>
       <div className="border-t border-l rounded-tl-sm flex flex-col gap-2 w-fit p-2 border-slate-600 dark:border-slate-400 border-opacity-50">
-        {links
+        {componentLinks
           .sort((a, b) => a.label.localeCompare(b.label)) // Sorts the links alphabetically by label
           .map((link, index) => (
             <Link

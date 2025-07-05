@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
+import "@/styles/ItsBtn.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
@@ -8,6 +9,7 @@ import Image from "next/image";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { ItsConfirmProvider } from "@/ItsConfirmPop/ItsConfirmPop";
+import SearchButton from "@/components/SearchButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,6 +36,7 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
+              <SearchButton />
               <Navbar />
               <div className="z-zero fixed top-0 left-0">
                 <span className="absolute top-0 left-14 w-[20px] h-[20px] bg-purple-500 rounded-full overflow-hidden]"></span>
