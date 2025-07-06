@@ -1,3 +1,3 @@
 export const CodeSnipCopyBtnUsage = `
-    <ItsCopyBtn text={testText} />
+<ItsCopyBtn text={testText} />
 `

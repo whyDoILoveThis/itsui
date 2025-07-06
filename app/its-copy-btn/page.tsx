@@ -23,7 +23,6 @@ const Page = () => {
           />
 
           <div className="flex justify-between w-full">
-            {" "}
             <ItsCopyBtn text={testText} />
             {testText !== "" ? (
               <button

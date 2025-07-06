@@ -1,5 +1,5 @@
 export const CodeSnipCopyBtnComponent = `
-    "use client";
+ "use client";
 import React, { useState } from "react";
 
 interface Props {
@@ -33,11 +33,9 @@ const ItsCopyBtn = ({
   return (
     <button
       onClick={handleCopy}
-      className={\`w-fit copy-button btn p-1 px-2 rounded-lg text-sm \${
-        copied && !copiedClassNames && " btn-green"
-      } \${classNames && classNames} \${
-        copied && copiedClassNames && copiedClassNames
-      }\`}
+      className={\`btn text-sm \${copied && !copiedClassNames && " btn-green"} \${
+        classNames && classNames
+      } \${copied && copiedClassNames && copiedClassNames}\`}
     >
       {copied && copiedText
         ? copiedText
