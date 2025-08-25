@@ -31,4 +31,12 @@ export const componentLinks = [
       label: "Dropdown Menu",
       href: "/its-dropdown",
     },
+    {
+      label: "Foo Bar",
+      href: "/its-foobar",
+    },
+    {
+      label: "Loader Spin Small",
+      href: "/its-loader-spin-small",
+    },
   ];
