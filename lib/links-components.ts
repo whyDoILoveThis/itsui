@@ -39,4 +39,8 @@ export const componentLinks = [
       label: "Loader Spin Small",
       href: "/its-loader-spin-small",
     },
+     {
+      label: "Confetti Cannon",
+      href: "/its-confetti-cannon",
+    },
   ];
