@@ -1,12 +1,14 @@
 export const CodeSnipDropdownUsage = `
 
+  import { LuChevronsUpDown } from "react-icons/lu";
+
 
     // A simple dropdown
     <ItsDropdown
             closeWhenClicked={true}
             btnText={
             <span className="btn-w-icon">
-                ItsDropdown <ChevronsUpDown />
+                ItsDropdown <LuChevronsUpDown />
             </span>
             }
             btnClassNames="btn btn-ghost text-shadow flex gap-1 items-center"
@@ -38,7 +40,7 @@ export const CodeSnipDropdownUsage = `
             <ItsDropdown
               btnText={
                 <span className="flex items-center gap-1">
-                  Category <ChevronsUpDown />
+                  Category <LuChevronsUpDown />
                 </span>
               }
               btnClassNames="btn btn-ghost"
@@ -60,7 +62,7 @@ export const CodeSnipDropdownUsage = `
               closeWhenClicked={true}
               btnText={
                 <span className="flex items-center whitespace-nowrap gap-1">
-                  Sort Order <ChevronsUpDown />
+                  Sort Order <LuChevronsUpDown />
                 </span>
               }
               btnClassNames="btn btn-ghost"
