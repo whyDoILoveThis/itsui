@@ -43,4 +43,8 @@ export const componentLinks = [
       label: "Confetti Cannon",
       href: "/its-confetti-cannon",
     },
+    {
+      label: "Three Dots",
+      href: "/its-three-dots",
+    },
   ];
