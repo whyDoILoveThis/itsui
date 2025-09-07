@@ -140,3 +140,37 @@ a {
   border: 2px dashed rgb(118, 130, 152);
 }
 
+/*FOOTER ANIMATIONS*/
+
+@keyframes flash {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+    filter: blur(6px);
+  }
+  25% {
+    transform: scaleX(1.05);
+    opacity: 0.9;
+    filter: blur(3px);
+  }
+  50% {
+    transform: scaleX(1.15);
+    opacity: 1;
+    filter: blur(1px);
+  }
+  75% {
+    transform: scaleX(1.05);
+    opacity: 0.9;
+    filter: blur(3px);
+  }
+  100% {
+    transform: scaleX(0);
+    opacity: 0;
+    filter: blur(6px);
+  }
+}
+
+
+
+
+
