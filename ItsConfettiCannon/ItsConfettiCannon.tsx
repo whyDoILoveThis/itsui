@@ -1,13 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
-
-/**
- * ConfettiCanvasPopper.tsx
- * - Canvas-based confetti (spam-click safe)
- * - Shoots upper-right, stays solid, then fades
- * - DevicePixelRatio aware, performant, caps total particles
- * - FIX: particles now keep a consistent shape (no flutter)
- */
+import React, { useEffect, useRef, useState } from "react";
 
 const COLORS = [
   "#f87171",
@@ -19,9 +11,7 @@ const COLORS = [
   "#fb923c",
   "#34d399",
 ];
-
 type Shape = "rect" | "circle";
-
 type Particle = {
   x: number;
   y: number;
@@ -29,30 +19,31 @@ type Particle = {
   vy: number;
   size: number;
   color: string;
-  life: number; // seconds total
-  age: number; // seconds lived
+  life: number;
+  age: number;
   rotation: number;
-  spin: number; // radians/sec
-  shape: Shape; // consistent shape for the particle
+  spin: number;
+  shape: Shape;
 };
 
-export default function ConfettiCanvasCannon(): JSX.Element {
+export default function ItsConfettiCannon(): JSX.Element {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const particlesRef = useRef<Particle[]>([]);
   const rafRef = useRef<number | null>(null);
   const lastTimeRef = useRef<number | null>(null);
   const maxParticles = 1200;
 
-  // Setup canvas size and DPR
+  const [animKey, setAnimKey] = useState(0); // 🚀 for spam-click animation
+
+  // canvas resize
   useEffect(() => {
     const canvas = canvasRef.current!;
-    if (!canvas) return;
     const resize = () => {
       const dpr = window.devicePixelRatio || 1;
       canvas.style.width = `${window.innerWidth}px`;
       canvas.style.height = `${window.innerHeight}px`;
-      canvas.width = Math.round(window.innerWidth * dpr);
-      canvas.height = Math.round(window.innerHeight * dpr);
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
       const ctx = canvas.getContext("2d");
       if (ctx) ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
@@ -61,53 +52,36 @@ export default function ConfettiCanvasCannon(): JSX.Element {
     return () => window.removeEventListener("resize", resize);
   }, []);
 
-  // Animation loop
+  // animation loop
   useEffect(() => {
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d")!;
-
     const step = (t: number) => {
       if (!lastTimeRef.current) lastTimeRef.current = t;
-      const dt = Math.min(0.05, (t - lastTimeRef.current) / 1000); // cap dt
+      const dt = Math.min(0.05, (t - lastTimeRef.current) / 1000);
       lastTimeRef.current = t;
 
-      // update particles
       const parts = particlesRef.current;
       for (let i = parts.length - 1; i >= 0; i--) {
         const p = parts[i];
-        // simple physics: velocity + tiny gravity
-        const gravity = 400; // px/s^2 (tweakable)
-        p.vy += gravity * dt;
+        p.vy += 400 * dt;
         p.x += p.vx * dt;
         p.y += p.vy * dt;
         p.rotation += p.spin * dt;
         p.age += dt;
-
-        if (p.age >= p.life) {
-          // remove dead particle
-          parts.splice(i, 1);
-        }
+        if (p.age >= p.life) parts.splice(i, 1);
       }
 
-      // clear & draw
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      // draw particles
-      for (let i = 0; i < parts.length; i++) {
-        const p = parts[i];
-        // opacity: stay solid until 80% of life, then fade 20%
+      for (const p of parts) {
         const tNorm = p.age / p.life;
-        let alpha = 1;
-        if (tNorm >= 0.8) alpha = Math.max(0, 1 - (tNorm - 0.8) / 0.2);
-
+        let alpha = tNorm >= 0.8 ? Math.max(0, 1 - (tNorm - 0.8) / 0.2) : 1;
         ctx.save();
         ctx.globalAlpha = alpha;
         ctx.translate(p.x, p.y);
         ctx.rotate(p.rotation);
-
-        // DRAW BASED ON FIXED SHAPE (no randomness here)
         if (p.shape === "rect") {
           ctx.fillStyle = p.color;
-          // rectangle with slight aspect ratio for a paper-like feel
           ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.65);
         } else {
           ctx.beginPath();
@@ -115,13 +89,10 @@ export default function ConfettiCanvasCannon(): JSX.Element {
           ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
           ctx.fill();
         }
-
         ctx.restore();
       }
-
       rafRef.current = requestAnimationFrame(step);
     };
-
     rafRef.current = requestAnimationFrame(step);
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -130,30 +101,21 @@ export default function ConfettiCanvasCannon(): JSX.Element {
     };
   }, []);
 
-  // spawn a burst at screen coordinates (x, y)
   const spawnBurst = (x: number, y: number) => {
     const parts = particlesRef.current;
-    const count = 32 + Math.floor(Math.random() * 16); // 32-48 particles per burst
-
+    const count = 32 + Math.floor(Math.random() * 16);
     for (let i = 0; i < count; i++) {
-      if (parts.length > maxParticles) break; // cap total
-      // angle range biased to upper-right: between -85deg and -15deg
-      const angle = (Math.PI / 180) * (-85 + Math.random() * 70); // -85 -> -15 deg
-      const speed = 260 + Math.random() * 420; // px/s
-
+      if (parts.length > maxParticles) break;
+      const angle = (Math.PI / 180) * (-85 + Math.random() * 70);
+      const speed = 260 + Math.random() * 420;
       const vx = Math.cos(angle) * speed;
-      const vy = Math.sin(angle) * speed; // negative -> upward initially
-
-      const size = 4 + Math.random() * 10; // px
-      const life = 0.9 + Math.random() * 0.9; // seconds
+      const vy = Math.sin(angle) * speed;
+      const size = 4 + Math.random() * 10;
+      const life = 0.9 + Math.random() * 0.9;
       const rotation = Math.random() * Math.PI * 2;
-      const spin = (Math.random() - 0.5) * 10; // radians/sec
-
+      const spin = (Math.random() - 0.5) * 10;
       const color = COLORS[Math.floor(Math.random() * COLORS.length)];
-
-      // assign a consistent shape at spawn time: prefer rects for bigger pieces
-      const shape: Shape = size > 6 && Math.random() > 0.4 ? "rect" : "circle";
-
+      const shape = size > 6 && Math.random() > 0.4 ? "rect" : "circle";
       parts.push({
         x,
         y,
@@ -170,16 +132,15 @@ export default function ConfettiCanvasCannon(): JSX.Element {
     }
   };
 
-  // click handler: compute emoji center and spawn burst
   const handleClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
-    // get click target center rather than click coords (so emoji center is source)
     const btn = ev.currentTarget;
     const rect = btn.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
-
-    // canvas is full window sized; spawn at center coords
     spawnBurst(cx, cy);
+
+    // 🚀 increment key to retrigger animation instantly
+    setAnimKey((prev) => prev + 1);
   };
 
   return (
@@ -188,12 +149,12 @@ export default function ConfettiCanvasCannon(): JSX.Element {
         onClick={handleClick}
         aria-label="Pop confetti"
         title="Click / spam-click me!"
-        className="relative z-20 select-none text-4xl"
+        className={`relative z-20 select-none text-4xl`}
+        key={animKey} // 🔑 triggers re-mount for animation restart
       >
         🎉
       </button>
 
-      {/* full-screen canvas sits above background but below UI */}
       <canvas
         ref={canvasRef}
         style={{
@@ -204,6 +165,29 @@ export default function ConfettiCanvasCannon(): JSX.Element {
           pointerEvents: "none",
         }}
       />
+
+      <style jsx global>{`
+        @keyframes confetti-pop {
+          0% {
+            transform: scale(1) rotate(0deg);
+          }
+          25% {
+            transform: scale(1.3) rotate(-10deg);
+          }
+          50% {
+            transform: scale(0.9) rotate(10deg);
+          }
+          75% {
+            transform: scale(1.15) rotate(-5deg);
+          }
+          100% {
+            transform: scale(1) rotate(0deg);
+          }
+        }
+        button[aria-label="Pop confetti"] {
+          animation: confetti-pop 0.3s ease-in-out;
+        }
+      `}</style>
     </div>
   );
 }
