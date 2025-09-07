@@ -1,4 +1,1 @@
-export const CodeSnipConfettiCannonUsage = `<div>
-  <ConfettiCanvasCannon />
- </div>
-`
+export const CodeSnipConfettiCannonUsage = `<ItsConfettiCannon />`
